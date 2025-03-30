@@ -1,10 +1,13 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+
+import { Inventory } from './entities/inventory.entity';
+
+import { CreateInventoryDto, FiltersInventoryDto, UpdateInventoryDto } from './dto';
+
 import { AllExceptionsService } from 'src/helpers/filters/all-exceptions.service';
 import { ResponseRequestService } from 'src/helpers/services/response-request.service';
-import { Repository } from 'typeorm';
-import { Inventory } from './entities/inventory.entity';
-import { CreateInventoryDto, FiltersInventoryDto, UpdateInventoryDto } from './dto';
 
 @Injectable()
 export class InventoryService {
@@ -123,13 +126,13 @@ export class InventoryService {
 
   async remove(id: string) {
     try {
-      const recipe = await this.inventoryRepository.findOneBy({ id });
-      if (!recipe) return this.responseRequestService.info('No se encontró inventario para eliminar');
+      const inventory = await this.inventoryRepository.findOneBy({ id });
+      if (!inventory) return this.responseRequestService.info('No se encontró inventario para eliminar');
 
-      recipe.is_active = false;
-      recipe.updated_at = new Date();
+      inventory.is_active = false;
+      inventory.updated_at = new Date();
 
-      await this.inventoryRepository.save(recipe);
+      await this.inventoryRepository.save(inventory);
       return this.responseRequestService.success<void>('Inventario eliminado correctamente', 200);
     } catch (error) {
       this.allExceptionsService.handleDBExceptions(
