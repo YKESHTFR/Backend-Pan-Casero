@@ -3,8 +3,8 @@ import { ConfigModule } from '@nestjs/config';
 
 import { RecipeModule } from './recipe/recipe.module';
 
-import { RecipeService } from './recipe/recipe.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { InventoryModule } from './inventory/inventory.module';
 
 @Module({
   imports: [ConfigModule.forRoot(),
@@ -18,7 +18,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
     autoLoadEntities: true,
     synchronize: true,
   }),
-  RecipeModule],
+  RecipeModule,
+  InventoryModule],
   controllers: [],
   providers: [],
   exports: [],

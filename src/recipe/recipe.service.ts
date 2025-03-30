@@ -16,7 +16,6 @@ export class RecipeService {
     private readonly recipeRepository: Repository<Recipe>,
     private responseRequestService: ResponseRequestService,
     private allExceptionsService: AllExceptionsService,
-    // private readonly recipeIngredientRepository: Repository<RecipeIngredient>, // Assuming you have a RecipeIngredient entity and repository set up
   ) { }
   async create(data: CreateRecipeDto) {
     try {
