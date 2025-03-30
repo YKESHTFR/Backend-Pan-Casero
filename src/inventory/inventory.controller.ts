@@ -1,10 +1,12 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, Query, ParseUUIDPipe } from '@nestjs/common';
-import { InventoryService } from './inventory.service';
+import { Body, Controller, Get, Param, ParseUUIDPipe, Patch, Post, Query } from '@nestjs/common';
+
 import { CreateInventoryDto, FiltersInventoryDto, UpdateInventoryDto } from './dto';
+
+import { InventoryService } from './inventory.service';
 
 @Controller('inventory')
 export class InventoryController {
-  constructor(private readonly inventoryService: InventoryService) {}
+  constructor(private readonly inventoryService: InventoryService) { }
 
   @Post()
   async create(@Body() data: CreateInventoryDto) {
