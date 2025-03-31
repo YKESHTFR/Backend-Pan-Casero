@@ -19,8 +19,6 @@ export class RecipeService {
   ) { }
   async create(data: CreateRecipeDto) {
     try {
-      if (!data) return this.responseRequestService.error('No se recibieron datos para crear receta');
-
       const recipe = this.recipeRepository.create(data);
       this.recipeRepository.save(recipe);
 
@@ -108,8 +106,6 @@ export class RecipeService {
 
   async update(id: string, data: UpdateRecipeDto) {
     try {
-      if (!data) return this.responseRequestService.error('No se recibieron datos para actualizar receta');
-
       const recipe = await this.recipeRepository.preload({
         id,
         ...data,

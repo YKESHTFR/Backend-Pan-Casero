@@ -19,8 +19,6 @@ export class InventoryService {
   ) { }
   async create(data: CreateInventoryDto) {
     try {
-      if (!data) return this.responseRequestService.error('No se recibieron datos para crear inventario');
-
       const inventory = this.inventoryRepository.create(data);
       await this.inventoryRepository.save(inventory);
 
@@ -104,8 +102,6 @@ export class InventoryService {
 
   async update(id: string, data: UpdateInventoryDto) {
     try {
-      if (!data) return this.responseRequestService.error('No se recibieron datos para actualizar inventario');
-
       const inventory = await this.inventoryRepository.preload({
         id,
         ...data,
