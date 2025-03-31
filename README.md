@@ -34,3 +34,5 @@ http://localhost:3000/api#/
 
 8. Imagen de la documentación
 ![Doc API](/src/helpers/images/DocAPI.png)
+
+# Hecho por los mejores en lo que hacemos: Yesid Bolaños - Gabriel Peña - Jimena Cabrera
