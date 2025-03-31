@@ -22,7 +22,7 @@ export class InventoryService {
       if (!data) return this.responseRequestService.error('No se recibieron datos para crear inventario');
 
       const inventory = this.inventoryRepository.create(data);
-      this.inventoryRepository.save(inventory);
+      await this.inventoryRepository.save(inventory);
 
       return await this.responseRequestService.success<void>('Inventario creado correctamente', 201);
     } catch (error) {
