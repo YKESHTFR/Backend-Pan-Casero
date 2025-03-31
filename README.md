@@ -26,3 +26,11 @@ docker-compose up -d
 ```
 yarn start:dev
 ```
+
+7. Para acceder a la documentación de la API una vez lanzado el proyecto diríjase a 
+´´´
+http://localhost:3000/api#/
+´´´
+
+8. Imagen de la documentación
+![Doc API](/src/helpers/images/DocAPI.png)
