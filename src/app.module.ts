@@ -5,6 +5,7 @@ import { RecipeModule } from './recipe/recipe.module';
 
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { InventoryModule } from './inventory/inventory.module';
+import { OrderModule } from './order/order.module';
 
 @Module({
   imports: [ConfigModule.forRoot(),
@@ -19,7 +20,8 @@ import { InventoryModule } from './inventory/inventory.module';
     synchronize: true,
   }),
   RecipeModule,
-  InventoryModule],
+  InventoryModule,
+  OrderModule],
   controllers: [],
   providers: [],
   exports: [],
