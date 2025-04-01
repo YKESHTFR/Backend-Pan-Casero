@@ -4,9 +4,11 @@ import { ConfigModule } from '@nestjs/config';
 import { RecipeModule } from './recipe/recipe.module';
 
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { EmployeeModule } from './employee/employee.module';
 import { InventoryModule } from './inventory/inventory.module';
-import { PayrollModule } from './payroll/payroll.module';
 import { OrderModule } from './order/order.module';
+import { PayrollModule } from './payroll/payroll.module';
+import { ProductModule } from './product/product.module';
 
 @Module({
   imports: [ConfigModule.forRoot(),
@@ -20,10 +22,12 @@ import { OrderModule } from './order/order.module';
     autoLoadEntities: true,
     synchronize: true,
   }),
-  RecipeModule,
-  InventoryModule,
-  PayrollModule],
-  OrderModule],
+    RecipeModule,
+    InventoryModule,
+    PayrollModule,
+    OrderModule,
+    EmployeeModule,
+    ProductModule],
   controllers: [],
   providers: [],
   exports: [],
