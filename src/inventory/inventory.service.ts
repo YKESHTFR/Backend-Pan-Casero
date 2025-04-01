@@ -46,15 +46,15 @@ export class InventoryService {
         .skip(offset)
         .orderBy('inventory.created_at', 'DESC');
 
-      const recipe = await queryBuilder.getMany();
+      const inventory = await queryBuilder.getMany();
 
-      if (recipe.length === 0)
+      if (inventory.length === 0)
         return this.responseRequestService.info('No se encontraron registros de inventario');
 
       return this.responseRequestService.successList<Inventory[]>(
         'Registros encontrados correctamente',
-        recipe.length,
-        recipe,
+        inventory.length,
+        inventory,
       );
     } catch (error) {
       this.allExceptionsService.handleDBExceptions(
