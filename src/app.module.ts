@@ -6,6 +6,7 @@ import { RecipeModule } from './recipe/recipe.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { InventoryModule } from './inventory/inventory.module';
 import { EmployeeModule } from './employee/employee.module';
+import { PayrollModule } from './payroll/payroll.module';
 
 @Module({
   imports: [ConfigModule.forRoot(),
@@ -21,7 +22,8 @@ import { EmployeeModule } from './employee/employee.module';
   }),
   RecipeModule,
   InventoryModule,
-  EmployeeModule],
+  EmployeeModule,
+  PayrollModule],
   controllers: [],
   providers: [],
   exports: [],
