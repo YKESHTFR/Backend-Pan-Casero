@@ -1,0 +1,35 @@
+version: '3'
+
+services:
+  pancaseroapp:
+    depends_on:
+      - db
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    image: pancasero-docker
+    container_name: pancaseroapp
+    restart: always
+    ports:
+      - "${APP_PORT}:${APP_PORT}"
+    environment:
+      DB_HOST: ${DB_HOST}
+      DB_PORT: ${DB_PORT}
+      DB_USERNAME: ${DB_USERNAME}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_NAME: ${DB_NAME}
+      PORT: ${APP_PORT}
+      DEFAULT_LIMIT: ${DEFAULT_LIMIT}
+
+  db:
+    image: postgres:14.3
+    restart: always
+    ports:
+      - "5432:5432"
+    environment: 
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USERNAME}
+    container_name: pancaserodb
+    volumes:
+      - ./postgres:/var/lib/postgresql/data
