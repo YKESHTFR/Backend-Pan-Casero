@@ -1,0 +1,7 @@
+# Ignore node_modules and dist directories
+dist/
+node_modules/
+.gitignore
+
+# Ignore all files in the .git directory
+.git/
