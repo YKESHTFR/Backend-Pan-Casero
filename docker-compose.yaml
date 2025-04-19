@@ -1,4 +1,3 @@
-
 services:
   db:
     image: postgres:14.3
@@ -11,3 +10,16 @@ services:
     container_name: pancaserodb
     volumes:
       - ./postgres:/var/lib/postgresql/data
+
+  keycloak:
+    image: quay.io/keycloak/keycloak:26.2.0
+    container_name: keycloak-1
+    command: start-dev
+    ports:
+      - "8080:8080"
+    environment:
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: admin
+    volumes:
+      - ./keycloak-data:/opt/keycloak/data
+  

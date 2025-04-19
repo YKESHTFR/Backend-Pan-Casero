@@ -9,9 +9,11 @@ import { AllExceptionsService } from 'src/helpers/filters/all-exceptions.service
 import { ResponseRequestService } from 'src/helpers/services/response-request.service';
 import { RecipeService } from './recipe.service';
 
+import { AuthModule } from 'src/auth/auth.module';
+
 @Module({
   controllers: [RecipeController],
-  imports: [TypeOrmModule.forFeature([Recipe])],
+  imports: [TypeOrmModule.forFeature([Recipe]), AuthModule],
   providers: [RecipeService, AllExceptionsService, ResponseRequestService],
 })
 export class RecipeModule { }
