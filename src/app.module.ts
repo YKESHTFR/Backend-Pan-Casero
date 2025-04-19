@@ -4,14 +4,25 @@ import { ConfigModule } from '@nestjs/config';
 import { RecipeModule } from './recipe/recipe.module';
 
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { AuthModule } from './auth/auth.module';
 import { EmployeeModule } from './employee/employee.module';
 import { InventoryModule } from './inventory/inventory.module';
 import { OrderModule } from './order/order.module';
 import { PayrollModule } from './payroll/payroll.module';
 import { ProductModule } from './product/product.module';
+import { APP_GUARD } from '@nestjs/core';
+import { AuthGuard, KeycloakConnectModule, PolicyEnforcementMode, ResourceGuard, RoleGuard, TokenValidation } from 'nest-keycloak-connect';
 
 @Module({
   imports: [ConfigModule.forRoot(),
+  KeycloakConnectModule.register({
+    authServerUrl: 'http://localhost:8080',
+    realm: 'nestjs-realm',
+    clientId: 'nestjs-api',
+    secret: '09dy1hb45nWcw3sID4luD7ToMqZez9H4', 
+    policyEnforcement: PolicyEnforcementMode.PERMISSIVE, 
+    tokenValidation: TokenValidation.ONLINE, 
+  }),
   TypeOrmModule.forRoot({
     type: 'postgres',
     host: process.env.DB_HOST,
@@ -27,9 +38,24 @@ import { ProductModule } from './product/product.module';
     PayrollModule,
     OrderModule,
     EmployeeModule,
-    ProductModule],
+    ProductModule,
+    AuthModule,
+  ],
   controllers: [],
-  providers: [],
+  providers: [
+    {
+      provide: APP_GUARD,
+      useClass: AuthGuard, // obliga a usar Keycloak como guardia
+    },
+    {
+      provide: APP_GUARD,
+      useClass: ResourceGuard, // habilita protección con @Resource()
+    },
+    {
+      provide: APP_GUARD,
+      useClass: RoleGuard, // habilita uso de @Roles()
+    },
+  ],
   exports: [],
 })
 export class AppModule { }
