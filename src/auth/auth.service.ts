@@ -10,7 +10,7 @@ export class AuthService {
     const params = new URLSearchParams();
     params.append('grant_type', 'password');
     params.append('client_id', 'nestjs-api');
-    params.append('client_secret', '09dy1hb45nWcw3sID4luD7ToMqZez9H4');
+    params.append('client_secret', '2xXhenziDdyOzE6dWnzxUtIzezY4c6Sw');
     params.append('username', username);
     params.append('password', password);
 
