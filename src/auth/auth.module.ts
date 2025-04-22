@@ -11,7 +11,7 @@ import { APP_GUARD } from '@nestjs/core';
       authServerUrl: 'http://localhost:8080',
       realm: 'nestjs-realm',
       clientId: 'nestjs-api',
-      secret: '09dy1hb45nWcw3sID4luD7ToMqZez9H4',
+      secret: '2xXhenziDdyOzE6dWnzxUtIzezY4c6Sw',
     }),
   ],
   providers: [

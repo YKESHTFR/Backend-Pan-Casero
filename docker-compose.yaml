@@ -4,7 +4,7 @@ services:
     restart: always
     ports:
       - "5432:5432"
-    environment: 
+    environment:
       POSTGRES_PASSWORD: ${DB_PASSWORD}
       POSTGRES_DB: ${DB_NAME}
     container_name: pancaserodb
@@ -20,6 +20,10 @@ services:
     environment:
       KEYCLOAK_ADMIN: admin
       KEYCLOAK_ADMIN_PASSWORD: admin
-    volumes:
-      - ./keycloak-data:/opt/keycloak/data
-  
+      KC_DB: postgres
+      KC_DB_URL_HOST: db
+      KC_DB_URL_DATABASE: ${DB_NAME}
+      KC_DB_USERNAME: ${DB_USERNAME}
+      KC_DB_PASSWORD: ${DB_PASSWORD}
+    depends_on:
+      - db
