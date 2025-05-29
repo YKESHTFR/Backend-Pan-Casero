@@ -13,7 +13,7 @@ import { AuthModule } from 'src/auth/auth.module';
 
 @Module({
   controllers: [InventoryController],
-  imports: [TypeOrmModule.forFeature([Inventory]), AuthModule],
+  imports: [TypeOrmModule.forFeature([Inventory])],
   providers: [InventoryService, AllExceptionsService, ResponseRequestService],
 })
 export class InventoryModule { }

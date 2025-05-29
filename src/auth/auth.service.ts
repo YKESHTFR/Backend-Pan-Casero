@@ -17,6 +17,13 @@ export class AuthService {
     try {
       const response = await axios.post(
         'http://localhost:8080/realms/nestjs-realm/protocol/openid-connect/token',
+        /*
+        http://localhost:8080/realms/nestjs-realm/protocol/openid-connect/auth
+        ?client_id=nestjs-api
+        &redirect_uri=http://localhost:4200/
+        &response_type=code
+        &scope=openid
+        */
         params.toString(),
         {
           headers: {

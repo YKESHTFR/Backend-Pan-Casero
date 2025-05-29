@@ -18,7 +18,7 @@ export class OrderController {
   @ApiResponse({ status: 500, description: 'Internal Server Error.' })
 
   @Post()
-  @Roles({ roles: ['admin', 'user'] })
+  // @Roles({ roles: ['admin', 'user'] })
   async create(@Body() data: CreateOrderDto) {
     return this.orderService.create(data);
   }
@@ -28,7 +28,7 @@ export class OrderController {
   @ApiResponse({ status: 500, description: 'Internal Server Error.' })
 
   @Get()
-  @Roles({ roles: ['admin', 'user'] })
+  // @Roles({ roles: ['admin', 'user'] })
   async list(@Query() filter: FiltersOrderDto) {
     return this.orderService.list(filter);
   }
@@ -38,7 +38,7 @@ export class OrderController {
   @ApiResponse({ status: 400, description: 'Bad Request.' })
 
   @Get(':id')
-  @Roles({ roles: ['admin', 'user'] })
+  // @Roles({ roles: ['admin', 'user'] })
   async findOne(@Param('id', ParseUUIDPipe) id: string) {
     return this.orderService.findOne(id);
   }
@@ -48,7 +48,7 @@ export class OrderController {
   @ApiResponse({ status: 400, description: 'Bad Request.' })
 
   @Patch(':id')
-  @Roles({ roles: ['admin', 'user'] })
+  // @Roles({ roles: ['admin', 'user'] })
   async update(@Param('id', ParseUUIDPipe) id: string, @Body() data: UpdateOrderDto) {
     return this.orderService.update(id, data);
   }
@@ -57,7 +57,7 @@ export class OrderController {
   @ApiResponse({ status: 404, description: 'Order not found.' })
   @ApiResponse({ status: 400, description: 'Bad Request.' })
   @Delete(':id')
-  @Roles({ roles: ['admin', 'user'] })
+  // @Roles({ roles: ['admin', 'user'] })
   async remove(@Param('id', ParseUUIDPipe) id: string) {
     return this.orderService.remove(id);
   }

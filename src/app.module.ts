@@ -15,14 +15,14 @@ import { AuthGuard, KeycloakConnectModule, PolicyEnforcementMode, ResourceGuard,
 
 @Module({
   imports: [ConfigModule.forRoot(),
-  KeycloakConnectModule.register({
-    authServerUrl: 'http://localhost:8080',
-    realm: 'nestjs-realm',
-    clientId: 'nestjs-api',
-    secret: '2xXhenziDdyOzE6dWnzxUtIzezY4c6Sw', 
-    policyEnforcement: PolicyEnforcementMode.PERMISSIVE, 
-    tokenValidation: TokenValidation.ONLINE, 
-  }),
+  // KeycloakConnectModule.register({
+  //   authServerUrl: 'http://localhost:8080',
+  //   realm: 'nestjs-realm',
+  //   clientId: 'nestjs-api',
+  //   secret: '2xXhenziDdyOzE6dWnzxUtIzezY4c6Sw', 
+  //   policyEnforcement: PolicyEnforcementMode.PERMISSIVE, 
+  //   tokenValidation: TokenValidation.ONLINE, 
+  // }),
   TypeOrmModule.forRoot({
     type: 'postgres',
     host: process.env.DB_HOST,
@@ -43,18 +43,18 @@ import { AuthGuard, KeycloakConnectModule, PolicyEnforcementMode, ResourceGuard,
   ],
   controllers: [],
   providers: [
-    {
-      provide: APP_GUARD,
-      useClass: AuthGuard, // obliga a usar Keycloak como guardia
-    },
-    {
-      provide: APP_GUARD,
-      useClass: ResourceGuard, // habilita protección con @Resource()
-    },
-    {
-      provide: APP_GUARD,
-      useClass: RoleGuard, // habilita uso de @Roles()
-    },
+    // {
+    //   provide: APP_GUARD,
+    //   useClass: AuthGuard, // obliga a usar Keycloak como guardia
+    // },
+    // {
+    //   provide: APP_GUARD,
+    //   useClass: ResourceGuard, // habilita protección con @Resource()
+    // },
+    // {
+    //   provide: APP_GUARD,
+    //   useClass: RoleGuard, // habilita uso de @Roles()
+    // },
   ],
   exports: [],
 })
