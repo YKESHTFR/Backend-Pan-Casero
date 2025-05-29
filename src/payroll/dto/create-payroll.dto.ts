@@ -9,8 +9,8 @@ export class CreatePayrollDto {
     @IsPositive()
     salary: number;
 
-    @ApiProperty({ description: 'Date of payment', example: "01-02-2025" })
-    @IsNotEmpty()
-    @IsDateString()
-    payment_date: Date;
+    // @ApiProperty({ description: 'Date of payment', example: "01-02-2025" })
+    // @IsNotEmpty()
+    // @IsDateString()
+    // payment_date: Date;
 }

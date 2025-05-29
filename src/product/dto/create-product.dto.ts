@@ -11,4 +11,9 @@ export class CreateProductDto {
     @IsNotEmpty()
     @IsNumber()
     price: number;
+
+    @ApiProperty({ description: "Description of the product", example: "New Bread" })
+    @IsNotEmpty()
+    @IsString()
+    description: string;
 }
