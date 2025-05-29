@@ -13,7 +13,7 @@ import { AuthModule } from 'src/auth/auth.module';
 
 @Module({
   controllers: [RecipeController],
-  imports: [TypeOrmModule.forFeature([Recipe]), AuthModule],
+  imports: [TypeOrmModule.forFeature([Recipe])],
   providers: [RecipeService, AllExceptionsService, ResponseRequestService],
 })
 export class RecipeModule { }

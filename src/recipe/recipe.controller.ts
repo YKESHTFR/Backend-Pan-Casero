@@ -18,7 +18,7 @@ export class RecipeController {
   @ApiResponse({ status: 500, description: 'Internal server error' })
 
   @Post()
-  @Roles({ roles: ['admin'] })
+  // @Roles({ roles: ['admin'] })
   async create(@Body() data: CreateRecipeDto) {
     return this.recipeService.create(data);
   }
@@ -28,7 +28,7 @@ export class RecipeController {
   @ApiResponse({ status: 500, description: 'Internal server error' })
 
   @Get()
-  @Roles({ roles: ['admin'] })
+  // @Roles({ roles: ['admin'] })
   async list(@Query() filter: FiltersRecipeDto) {
     return this.recipeService.list(filter);
   }
@@ -38,13 +38,13 @@ export class RecipeController {
   @ApiResponse({ status: 400, description: 'Bad request' })
 
   @Get(':id')
-  @Roles({ roles: ['admin'] })
+  // @Roles({ roles: ['admin'] })
   async findOne(@Param('id', ParseUUIDPipe) id: string) {
     return this.recipeService.findOne(id);
   }
 
   @Patch(':id')
-  @Roles({ roles: ['admin'] })
+  // @Roles({ roles: ['admin'] })
   async update(@Param('id', ParseUUIDPipe) id: string, @Body() data: UpdateRecipeDto) {
     return this.recipeService.update(id, data);
   }
@@ -54,7 +54,7 @@ export class RecipeController {
   @ApiResponse({ status: 400, description: 'Bad request' })
 
   @Patch('remove/:id')
-  @Roles({ roles: ['admin'] })
+  // @Roles({ roles: ['admin'] })
   async remove(@Param('id', ParseUUIDPipe) id: string) {
     return this.recipeService.remove(id);
   }

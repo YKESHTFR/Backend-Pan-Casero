@@ -17,7 +17,7 @@ export class InventoryController {
   @ApiResponse({ status: 400, description: 'Bad request' })
   @ApiResponse({ status: 500, description: 'Internal server error' })
 
-  @Roles({ roles: ['admin'] })
+  // // @Roles({ roles: ['admin'] })
   @Post()
   async create(@Body() data: CreateInventoryDto) {
     return this.inventoryService.create(data);
@@ -28,7 +28,7 @@ export class InventoryController {
   @ApiResponse({ status: 500, description: 'Internal server error' })
 
   @Get()
-  @Roles({ roles: ['admin', 'user'] })
+  // // @Roles({ roles: ['admin', 'user'] })
   async list(@Query() filter: FiltersInventoryDto) {
     return this.inventoryService.list(filter);
   }
@@ -38,7 +38,7 @@ export class InventoryController {
   @ApiResponse({ status: 400, description: 'Bad request' })
 
   @Get(':id')
-  @Roles({ roles: ['admin', 'user'] })
+  // // @Roles({ roles: ['admin', 'user'] })
   async findOne(@Param('id', ParseUUIDPipe) id: string) {
     return this.inventoryService.findOne(id);
   }
@@ -48,7 +48,7 @@ export class InventoryController {
   @ApiResponse({ status: 400, description: 'Bad request' })
 
   @Patch(':id')
-  @Roles({ roles: ['admin'] })
+  // // @Roles({ roles: ['admin'] })
   async update(@Param('id', ParseUUIDPipe) id: string, @Body() data: UpdateInventoryDto) {
     return this.inventoryService.update(id, data);
   }
@@ -58,7 +58,7 @@ export class InventoryController {
   @ApiResponse({ status: 400, description: 'Bad request' })
 
   @Patch('remove/:id')
-  @Roles({ roles: ['admin'] })
+  // // @Roles({ roles: ['admin'] })
   remove(@Param('id', ParseUUIDPipe) id: string) {
     return this.inventoryService.remove(id);
   }

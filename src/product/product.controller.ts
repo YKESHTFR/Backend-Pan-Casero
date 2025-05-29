@@ -18,7 +18,7 @@ export class ProductController {
   @ApiResponse({ status: 500, description: 'Internal Server Error.' })
 
   @Post()
-  @Roles({ roles: ['admin'] })
+  // @Roles({ roles: ['admin'] })
   async create(@Body() data: CreateProductDto) {
     return this.productService.create(data);
   }
@@ -28,7 +28,7 @@ export class ProductController {
   @ApiResponse({ status: 500, description: 'Internal Server Error.' })
 
   @Get()
-  @Roles({ roles: ['admin'] })
+  // @Roles({ roles: ['admin'] })
   async list(@Query() filter: FiltersProductDto) {
     return this.productService.list(filter);
   }
@@ -38,7 +38,7 @@ export class ProductController {
   @ApiResponse({ status: 400, description: 'Bad Request.' })
 
   @Get(':id')
-  @Roles({ roles: ['admin'] })
+  // @Roles({ roles: ['admin'] })
   async findOne(@Param('id', ParseUUIDPipe) id: string) {
     return this.productService.findOne(id);
   }
@@ -48,7 +48,7 @@ export class ProductController {
   @ApiResponse({ status: 400, description: 'Bad Request.' })
 
   @Patch(':id')
-  @Roles({ roles: ['admin'] })
+  // @Roles({ roles: ['admin'] })
   async update(@Param('id', ParseUUIDPipe) id: string, @Body() data: UpdateProductDto) {
     return this.productService.update(id, data);
   }
@@ -58,7 +58,7 @@ export class ProductController {
   @ApiResponse({ status: 400, description: 'Bad Request.' })
 
   @Patch('remove/:id')
-  @Roles({ roles: ['admin'] })
+  // @Roles({ roles: ['admin'] })
   async remove(@Param('id', ParseUUIDPipe) id: string) {
     return this.productService.remove(id);
   }

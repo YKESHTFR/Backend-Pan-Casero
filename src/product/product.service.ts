@@ -39,6 +39,7 @@ export class ProductService {
           'product.id',
           'product.name',
           'product.price',
+          'product.description',
           'product.created_at',
           'product.updated_at',
         ])
@@ -75,6 +76,7 @@ export class ProductService {
           'product.id',
           'product.name',
           'product.price',
+          'product.description',
           'product.created_at',
           'product.updated_at',
         ])
