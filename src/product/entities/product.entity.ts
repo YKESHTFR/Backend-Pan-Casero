@@ -8,8 +8,12 @@ export class Product {
     id: string;
 
     @ApiProperty({ description: "Name of the product", example: "Bread" })
-    @Column({ type: "varchar", length: 255, unique: true })
+    @Column({ type: "varchar", length: 255})
     name: string;
+
+    @ApiProperty({ description: "description of the product", example: "New Bread" })
+    @Column({ type: "varchar", length: 255})
+    description: string;
 
     @ApiProperty({ description: "Price of the product", example: 2.500 })
     @Column({ type: "numeric" })

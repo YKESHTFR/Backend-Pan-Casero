@@ -25,5 +25,7 @@ services:
       KC_DB_URL_DATABASE: ${DB_NAME}
       KC_DB_USERNAME: ${DB_USERNAME}
       KC_DB_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - ./themes:/opt/keycloak/themes
     depends_on:
       - db

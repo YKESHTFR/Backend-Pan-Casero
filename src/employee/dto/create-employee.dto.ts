@@ -1,5 +1,7 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { IsNotEmpty, IsString } from "class-validator";
+import { Type } from "class-transformer";
+import { IsNotEmpty, IsObject, IsString, ValidateNested } from "class-validator";
+import { CreatePayrollDto } from "src/payroll/dto";
 
 export class CreateEmployeeDto {
     @ApiProperty({ description: 'Name of the employee', example: 'John Doe' })
@@ -21,4 +23,10 @@ export class CreateEmployeeDto {
     @IsNotEmpty()
     @IsString()
     address: string;
+
+    @IsObject()
+    @ValidateNested()
+    @Type(() => CreatePayrollDto)
+    @IsNotEmpty()
+    payroll: CreatePayrollDto;
 }

@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { DataSource, Repository } from 'typeorm';
 
 import { CreateEmployeeDto, FiltersEmployeeDto, UpdateEmployeeDto } from './dto';
 
@@ -8,27 +8,51 @@ import { Employee } from './entities/employee.entity';
 
 import { AllExceptionsService } from 'src/helpers/filters/all-exceptions.service';
 import { ResponseRequestService } from 'src/helpers/services/response-request.service';
+import { Payroll } from 'src/payroll/entities/payroll.entity';
 
 @Injectable()
 export class EmployeeService {
   constructor(
     @InjectRepository(Employee)
     private readonly employeeRepository: Repository<Employee>,
+    private dataSource: DataSource,
     private responseRequestService: ResponseRequestService,
     private allExceptionsService: AllExceptionsService,
   ) { }
+
   async create(data: CreateEmployeeDto) {
+    const queryRunner = this.dataSource.createQueryRunner();
+    await queryRunner.connect();
+    await queryRunner.startTransaction();
     try {
-      const { number_identification } = data;
-      const employeeExists = await this.employeeRepository.findOneBy({ number_identification });
-      if (employeeExists) return this.responseRequestService.error('El empleado ya existe');
+      const { payroll, number_identification } = data;
 
-      const employee = this.employeeRepository.create(data);
-      await this.employeeRepository.save(employee);
+      const employeeExists = await this.employeeRepository.findOneBy({ number_identification: number_identification });
 
-      return await this.responseRequestService.success<void>('Empleado creado correctamente', 201);
+      if (employeeExists) {
+        return this.responseRequestService.error('El empleado ya existe');0
+      }
+
+      const employee = queryRunner.manager.create(Employee, {
+        ...data,
+        number_identification
+      });
+      await queryRunner.manager.save(employee);
+
+      const payrollData = queryRunner.manager.create(Payroll, payroll);
+      await queryRunner.manager.save(payrollData);
+
+      await queryRunner.commitTransaction();
     } catch (error) {
-      this.allExceptionsService.handleDBExceptions(error, null, Employee.name, EmployeeService.name);
+      await queryRunner.rollbackTransaction();
+      this.allExceptionsService.handleDBExceptions(
+        error,
+        "No fue posible crear el empleado",
+        Employee.name,
+        EmployeeService.name,
+      );
+    } finally {
+      await queryRunner.release();
     }
   }
 
