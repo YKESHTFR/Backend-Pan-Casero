@@ -7,6 +7,7 @@ import { APP_GUARD } from '@nestjs/core';
 @Module({
   controllers: [AuthController],
   imports: [
+    KeycloakConnectModule
     // KeycloakConnectModule.register({
     //   authServerUrl: 'http://localhost:8080',
     //   realm: 'nestjs-realm',
@@ -27,9 +28,11 @@ import { APP_GUARD } from '@nestjs/core';
     //   provide: APP_GUARD,
     //   useClass: RoleGuard,
     // },
-  AuthService],
+  AuthService
+],
   exports:[
     // KeycloakConnectModule
+    AuthService
   ]
 })
 export class AuthModule {}

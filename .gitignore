@@ -5,6 +5,8 @@
 
 postgres/
 themes/
+cloudinary/
+common/
 
 .env 
 

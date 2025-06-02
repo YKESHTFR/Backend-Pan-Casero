@@ -12,8 +12,18 @@ export class CreateProductDto {
     @IsNumber()
     price: number;
 
+    @ApiProperty({ description: "quantity of the product", example: 2 })
+    @IsNotEmpty()
+    @IsNumber()
+    quantity: number;
+
     @ApiProperty({ description: "Description of the product", example: "New Bread" })
     @IsNotEmpty()
     @IsString()
     description: string;
+
+    @ApiProperty({ description: "image url", example: "https://.." })
+    @IsNotEmpty()
+    @IsString()
+    image: string;
 }

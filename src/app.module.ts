@@ -12,17 +12,19 @@ import { PayrollModule } from './payroll/payroll.module';
 import { ProductModule } from './product/product.module';
 import { APP_GUARD } from '@nestjs/core';
 import { AuthGuard, KeycloakConnectModule, PolicyEnforcementMode, ResourceGuard, RoleGuard, TokenValidation } from 'nest-keycloak-connect';
+import { FilesModule } from './common/files/files.module';
+import { CloudinaryModule } from './cloudinary/cloudinary.module';
 
 @Module({
-  imports: [ConfigModule.forRoot(),
-  // KeycloakConnectModule.register({
-  //   authServerUrl: 'http://localhost:8080',
-  //   realm: 'nestjs-realm',
-  //   clientId: 'nestjs-api',
-  //   secret: '2xXhenziDdyOzE6dWnzxUtIzezY4c6Sw', 
-  //   policyEnforcement: PolicyEnforcementMode.PERMISSIVE, 
-  //   tokenValidation: TokenValidation.ONLINE, 
-  // }),
+  imports: [ConfigModule.forRoot({ isGlobal: true }),
+  KeycloakConnectModule.register({
+    authServerUrl: 'http://localhost:8080',
+    realm: 'nestjs-realm',
+    clientId: 'nestjs-api',
+    secret: '2xXhenziDdyOzE6dWnzxUtIzezY4c6Sw', 
+    policyEnforcement: PolicyEnforcementMode.PERMISSIVE, 
+    tokenValidation: TokenValidation.OFFLINE, 
+  }),
   TypeOrmModule.forRoot({
     type: 'postgres',
     host: process.env.DB_HOST,
@@ -39,22 +41,24 @@ import { AuthGuard, KeycloakConnectModule, PolicyEnforcementMode, ResourceGuard,
     OrderModule,
     EmployeeModule,
     ProductModule,
+    FilesModule,
+    CloudinaryModule,
     AuthModule,
   ],
   controllers: [],
   providers: [
-    // {
-    //   provide: APP_GUARD,
-    //   useClass: AuthGuard, // obliga a usar Keycloak como guardia
-    // },
-    // {
-    //   provide: APP_GUARD,
-    //   useClass: ResourceGuard, // habilita protección con @Resource()
-    // },
-    // {
-    //   provide: APP_GUARD,
-    //   useClass: RoleGuard, // habilita uso de @Roles()
-    // },
+    {
+      provide: APP_GUARD,
+      useClass: AuthGuard, // obliga a usar Keycloak como guardia
+    },
+    {
+      provide: APP_GUARD,
+      useClass: ResourceGuard, // habilita protección con @Resource()
+    },
+    {
+      provide: APP_GUARD,
+      useClass: RoleGuard, // habilita uso de @Roles()
+    },
   ],
   exports: [],
 })

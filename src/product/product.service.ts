@@ -40,6 +40,7 @@ export class ProductService {
           'product.name',
           'product.price',
           'product.description',
+          'product.image',
           'product.created_at',
           'product.updated_at',
         ])
@@ -77,6 +78,7 @@ export class ProductService {
           'product.name',
           'product.price',
           'product.description',
+          'product.image',
           'product.created_at',
           'product.updated_at',
         ])
