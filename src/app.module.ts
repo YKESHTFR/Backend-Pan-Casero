@@ -14,6 +14,7 @@ import { APP_GUARD } from '@nestjs/core';
 import { AuthGuard, KeycloakConnectModule, PolicyEnforcementMode, ResourceGuard, RoleGuard, TokenValidation } from 'nest-keycloak-connect';
 import { FilesModule } from './common/files/files.module';
 import { CloudinaryModule } from './cloudinary/cloudinary.module';
+import { SalesModule } from './sales/sales.module';
 
 @Module({
   imports: [ConfigModule.forRoot({ isGlobal: true }),
@@ -44,6 +45,7 @@ import { CloudinaryModule } from './cloudinary/cloudinary.module';
     FilesModule,
     CloudinaryModule,
     AuthModule,
+    SalesModule,
   ],
   controllers: [],
   providers: [
