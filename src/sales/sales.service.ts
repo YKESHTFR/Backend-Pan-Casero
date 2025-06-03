@@ -32,6 +32,7 @@ export class SalesService {
         .select([
           'sale.id',
           'sale.products',
+          'sale.total',
           // 'sale.quantity',
           // 'sale.price',
           // 'sale.createdAt',

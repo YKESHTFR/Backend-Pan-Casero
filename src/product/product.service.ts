@@ -117,15 +117,9 @@ export class ProductService {
       console.log("Antes de actualizar el producto:");
       console.log(product?.quantity);
       console.log(data.quantity)
-
-      if (data.quantitySubtract && product) {
-        console.log("Antes de actualizar el producto:");
-        console.log(product?.quantity);
-        console.log(data.quantitySubtract)
-        product.quantity -= data.quantitySubtract;        // product.quantity = Number(data.quantity + product.quantity);
-        console.log("Despues de actualizar el producto:");
-        console.log(product?.quantity);
-        console.log(data.quantitySubtract)
+      
+      if (data.quantity && product) {
+        product.quantity = Number(data.quantity - product.quantity);
         // console.log(data.quantity, product.quantity);
       }
 
