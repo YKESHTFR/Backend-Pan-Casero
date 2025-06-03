@@ -8,17 +8,23 @@
 
 API desarrollada con **NestJS**, **PostgreSQL** y **Docker** 
 
+NestJS – Framework progresivo para Node.js
+
+PostgreSQL – Base de datos relacional
+
+Docker – Contenedores para entornos consistentes
+
 ---
 
-1. Clonar el proyecto
+1. 🧬 Clonar el proyecto
 ---
-2. Instalar dependencias
+2. ⚙️ Instalación
 ```
 yarn install
 ```
 ---
 
-3. Clonar el archivo 
+3. 🧬 Clonar el archivo 
 ```
 .env.template
 ``` 
@@ -28,21 +34,21 @@ y renombrarlo a
 ```
 ---
 
-4. Cambiar las variables de entorno
+4. 🔧 Cambiar las variables de entorno
 ---
 
-5. Levantar el contenedor de base de datos
+5. 🐘 Levantar el contenedor de base de datos, Metabase y Keycloak
 ```
 docker-compose up -d
 ```
 ---
 
-6. Levantar el proyecto
+6. 🐘 Levantar el proyecto
 ```
 yarn start:dev
 ```
 ---
-7. Para acceder a la documentación de la API una vez lanzado el proyecto diríjase a 
+7. 📄 Documentación de la API Para acceder a la documentación de la API una vez lanzado el proyecto diríjase a 
 ```
 http://localhost:3000/api#/
 ```
@@ -52,5 +58,5 @@ http://localhost:3000/api#/
 ---
 # Hecho por: 
 ```
-👤 Yesid Bolaños 👤 Gabriel Peña 👤 Jimena Cabrera
+👤 Yesid Bolaños - (🧠 Backend) - 👤 Gabriel Peña - (🎨 Frontend / Diseño) - 👤 Jimena Cabrera - (🧪 QA)
 ```
