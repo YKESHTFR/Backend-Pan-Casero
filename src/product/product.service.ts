@@ -114,8 +114,24 @@ export class ProductService {
         ...data,
       });
 
+      console.log("Antes de actualizar el producto:");
+      console.log(product?.quantity);
+      console.log(data.quantity)
+
+      if (data.quantitySubtract && product) {
+        console.log("Antes de actualizar el producto:");
+        console.log(product?.quantity);
+        console.log(data.quantitySubtract)
+        product.quantity -= data.quantitySubtract;        // product.quantity = Number(data.quantity + product.quantity);
+        console.log("Despues de actualizar el producto:");
+        console.log(product?.quantity);
+        console.log(data.quantitySubtract)
+        // console.log(data.quantity, product.quantity);
+      }
+
       if (!product) return this.responseRequestService.info('No se encontró el producto para actualizar');
       await this.productRepository.save(product);
+      console.log(product);
       return this.responseRequestService.success<void>('Producto actualizado correctamente', 200);
     } catch (error) {
       this.allExceptionsService.handleDBExceptions(

@@ -8,6 +8,9 @@ export class Sale {
     @Column('jsonb', { nullable: true, default: [] })
     products: any[]; //provide an interface 
 
+    @Column('numeric')
+    total: number;
+
     @CreateDateColumn()
     createdAt: Date;
 }
