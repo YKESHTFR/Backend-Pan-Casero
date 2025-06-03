@@ -114,13 +114,8 @@ export class ProductService {
         ...data,
       });
 
-      console.log("Antes de actualizar el producto:");
-      console.log(product?.quantity);
-      console.log(data.quantity)
-      
       if (data.quantity && product) {
         product.quantity = Number(data.quantity - product.quantity);
-        // console.log(data.quantity, product.quantity);
       }
 
       if (!product) return this.responseRequestService.info('No se encontró el producto para actualizar');

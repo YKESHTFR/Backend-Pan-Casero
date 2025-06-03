@@ -33,9 +33,9 @@ export class SalesService {
           'sale.id',
           'sale.products',
           'sale.total',
+          'sale.createdAt',
           // 'sale.quantity',
           // 'sale.price',
-          // 'sale.createdAt',
           // 'sale.updatedAt',
         ])
         .take(limit)
