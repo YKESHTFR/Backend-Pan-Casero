@@ -8,12 +8,24 @@ export class Product {
     id: string;
 
     @ApiProperty({ description: "Name of the product", example: "Bread" })
-    @Column({ type: "varchar", length: 255, unique: true })
+    @Column({ type: "varchar", length: 255})
     name: string;
+
+    @ApiProperty({ description: "description of the product", example: "New Bread" })
+    @Column({ type: "varchar", length: 255})
+    description: string;
+
+    @ApiProperty({ description: "image of the product", example: "https://...." })
+    @Column({ type: "varchar", length: 400})
+    image: string;
 
     @ApiProperty({ description: "Price of the product", example: 2.500 })
     @Column({ type: "numeric" })
     price: number;
+
+    @ApiProperty({ description: "quantity of the product", example: 2 })
+    @Column({ type: "numeric" })
+    quantity: number;
     
     @ApiProperty({ description: "Indicates if the product is active", default: "true" })
     @Column({ type: "boolean", default: true })

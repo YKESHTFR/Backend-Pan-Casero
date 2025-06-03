@@ -39,6 +39,9 @@ export class ProductService {
           'product.id',
           'product.name',
           'product.price',
+          'product.description',
+          'product.quantity',
+          'product.image',
           'product.created_at',
           'product.updated_at',
         ])
@@ -75,6 +78,9 @@ export class ProductService {
           'product.id',
           'product.name',
           'product.price',
+          'product.description',
+          'product.quantity',
+          'product.image',
           'product.created_at',
           'product.updated_at',
         ])
@@ -108,8 +114,13 @@ export class ProductService {
         ...data,
       });
 
+      if (data.quantity && product) {
+        product.quantity = Number(data.quantity - product.quantity);
+      }
+
       if (!product) return this.responseRequestService.info('No se encontró el producto para actualizar');
       await this.productRepository.save(product);
+      console.log(product);
       return this.responseRequestService.success<void>('Producto actualizado correctamente', 200);
     } catch (error) {
       this.allExceptionsService.handleDBExceptions(

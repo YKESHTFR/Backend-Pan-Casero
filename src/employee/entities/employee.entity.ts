@@ -1,5 +1,6 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { Payroll } from "src/payroll/entities/payroll.entity";
+import { Column, CreateDateColumn, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
 @Entity()
 export class Employee {
@@ -26,6 +27,10 @@ export class Employee {
     @ApiProperty({description: 'indicates if the employee is active or not', example: true})
     @Column({ type: 'boolean', default: true })
     is_active: boolean;
+
+    @OneToOne(() => Payroll, { cascade: true, eager: true })
+    @JoinColumn({ name: 'payroll_id' })
+    payroll: Payroll;
 
     @CreateDateColumn()
     created_at: Date;

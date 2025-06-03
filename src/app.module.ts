@@ -12,16 +12,19 @@ import { PayrollModule } from './payroll/payroll.module';
 import { ProductModule } from './product/product.module';
 import { APP_GUARD } from '@nestjs/core';
 import { AuthGuard, KeycloakConnectModule, PolicyEnforcementMode, ResourceGuard, RoleGuard, TokenValidation } from 'nest-keycloak-connect';
+import { FilesModule } from './common/files/files.module';
+import { CloudinaryModule } from './cloudinary/cloudinary.module';
+import { SalesModule } from './sales/sales.module';
 
 @Module({
-  imports: [ConfigModule.forRoot(),
+  imports: [ConfigModule.forRoot({ isGlobal: true }),
   KeycloakConnectModule.register({
     authServerUrl: 'http://localhost:8080',
     realm: 'nestjs-realm',
     clientId: 'nestjs-api',
-    secret: '09dy1hb45nWcw3sID4luD7ToMqZez9H4', 
+    secret: '2xXhenziDdyOzE6dWnzxUtIzezY4c6Sw', 
     policyEnforcement: PolicyEnforcementMode.PERMISSIVE, 
-    tokenValidation: TokenValidation.ONLINE, 
+    tokenValidation: TokenValidation.OFFLINE, 
   }),
   TypeOrmModule.forRoot({
     type: 'postgres',
@@ -39,7 +42,10 @@ import { AuthGuard, KeycloakConnectModule, PolicyEnforcementMode, ResourceGuard,
     OrderModule,
     EmployeeModule,
     ProductModule,
+    FilesModule,
+    CloudinaryModule,
     AuthModule,
+    SalesModule,
   ],
   controllers: [],
   providers: [

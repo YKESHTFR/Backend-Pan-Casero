@@ -10,6 +10,7 @@ import { ProductService } from './product.service';
 import { Roles } from 'nest-keycloak-connect';
 
 @Controller('product')
+// @UseGuards(AuthGuard, ResourceGuard) 
 export class ProductController {
   constructor(private readonly productService: ProductService) { }
 
@@ -28,7 +29,7 @@ export class ProductController {
   @ApiResponse({ status: 500, description: 'Internal Server Error.' })
 
   @Get()
-  @Roles({ roles: ['admin'] })
+  @Roles({ roles: ['admin', 'user'] })
   async list(@Query() filter: FiltersProductDto) {
     return this.productService.list(filter);
   }

@@ -18,7 +18,7 @@ export class PayrollController {
   @ApiResponse({ description: 'Internal Server Error', status: 500 })
 
   @Post()
-  @Roles({ roles: ['admin'] })
+  // @Roles({ roles: ['admin'] })
   async create(@Body() data: CreatePayrollDto) {
     return this.payrollService.create(data);
   }
@@ -28,7 +28,7 @@ export class PayrollController {
   @ApiResponse({ description: 'Bad Request', status: 400 })
 
   @Get()
-  @Roles({ roles: ['admin'] })
+  // @Roles({ roles: ['admin'] })
   async list(@Query() filter: FiltersPayrollDto) {
     return this.payrollService.list(filter);
   }
@@ -38,7 +38,7 @@ export class PayrollController {
   @ApiResponse({ description: 'Bad Request', status: 400 })
 
   @Get(':id')
-  @Roles({ roles: ['admin'] })
+  // @Roles({ roles: ['admin'] })
   async findOne(@Param('id', ParseUUIDPipe) id: string) {
     return this.payrollService.findOne(id);
   }
@@ -48,7 +48,7 @@ export class PayrollController {
   @ApiResponse({ description: 'Bad Request', status: 400 })
 
   @Patch(':id')
-  @Roles({ roles: ['admin'] })
+  // @Roles({ roles: ['admin'] })
   async update(@Param('id', ParseUUIDPipe) id: string, @Body() data: UpdatePayrollDto) {
     return this.payrollService.update(id, data);
   }

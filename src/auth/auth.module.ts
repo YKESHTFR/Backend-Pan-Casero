@@ -7,27 +7,32 @@ import { APP_GUARD } from '@nestjs/core';
 @Module({
   controllers: [AuthController],
   imports: [
-    KeycloakConnectModule.register({
-      authServerUrl: 'http://localhost:8080',
-      realm: 'nestjs-realm',
-      clientId: 'nestjs-api',
-      secret: '09dy1hb45nWcw3sID4luD7ToMqZez9H4',
-    }),
+    KeycloakConnectModule
+    // KeycloakConnectModule.register({
+    //   authServerUrl: 'http://localhost:8080',
+    //   realm: 'nestjs-realm',
+    //   clientId: 'nestjs-api',
+    //   secret: '2xXhenziDdyOzE6dWnzxUtIzezY4c6Sw',
+    // }),
   ],
   providers: [
-    {
-      provide: APP_GUARD,
-      useClass: AuthGuard,
-    },
-    {
-      provide: APP_GUARD,
-      useClass: ResourceGuard,
-    },
-    {
-      provide: APP_GUARD,
-      useClass: RoleGuard,
-    },
-  AuthService],
-  exports:[KeycloakConnectModule]
+    // {
+    //   provide: APP_GUARD,
+    //   useClass: AuthGuard,
+    // },
+    // {
+    //   provide: APP_GUARD,
+    //   useClass: ResourceGuard,
+    // },
+    // {
+    //   provide: APP_GUARD,
+    //   useClass: RoleGuard,
+    // },
+  AuthService
+],
+  exports:[
+    // KeycloakConnectModule
+    AuthService
+  ]
 })
 export class AuthModule {}

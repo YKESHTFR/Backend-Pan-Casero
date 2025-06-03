@@ -4,12 +4,24 @@ services:
     restart: always
     ports:
       - "5432:5432"
-    environment: 
+    environment:
       POSTGRES_PASSWORD: ${DB_PASSWORD}
       POSTGRES_DB: ${DB_NAME}
     container_name: pancaserodb
     volumes:
       - ./postgres:/var/lib/postgresql/data
+  db_metabase:
+    image: postgres:14.3
+    container_name: metabase-postgres
+    restart: always
+    environment:
+      POSTGRES_USER: ${MB_DB_USER}
+      POSTGRES_PASSWORD: ${MB_DB_PASS}
+      POSTGRES_DB: ${MB_DB_DBNAME}
+    ports:
+      - "5433:5432"
+    volumes:
+      - ./postgres_metabase:/var/lib/postgresql/data
 
   keycloak:
     image: quay.io/keycloak/keycloak:26.2.0
@@ -20,6 +32,30 @@ services:
     environment:
       KEYCLOAK_ADMIN: admin
       KEYCLOAK_ADMIN_PASSWORD: admin
+      KC_DB: postgres
+      KC_DB_URL_HOST: db
+      KC_DB_URL_DATABASE: ${DB_NAME}
+      KC_DB_USERNAME: ${DB_USERNAME}
+      KC_DB_PASSWORD: ${DB_PASSWORD}
     volumes:
-      - ./keycloak-data:/opt/keycloak/data
-  
+      - ./themes:/opt/keycloak/themes
+    depends_on:
+      - db
+  metabase:
+    image: metabase/metabase:latest
+    container_name: metabase
+    hostname: metabase
+    ports:
+      - "3100:3100"
+    environment:
+      MB_JETTY_PORT: 3100
+      MB_DB_TYPE: postgres
+      MB_DB_DBNAME: ${MB_DB_DBNAME}
+      MB_DB_PORT: 5432
+      MB_DB_USER: ${MB_DB_USER}
+      MB_DB_PASS: ${MB_DB_PASS}
+      MB_DB_HOST: db_metabase
+    volumes:
+      - /dev/urandom:/dev/random:ro
+    depends_on:
+      - db_metabase

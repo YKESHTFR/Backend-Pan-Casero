@@ -13,7 +13,7 @@ import { AuthModule } from 'src/auth/auth.module';
 
 @Module({
   controllers: [PayrollController],
-  imports: [TypeOrmModule.forFeature([Payroll]), AuthModule],
+  imports: [TypeOrmModule.forFeature([Payroll])],
   providers: [PayrollService, AllExceptionsService, ResponseRequestService],
 })
 export class PayrollModule {}

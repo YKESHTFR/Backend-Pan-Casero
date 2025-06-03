@@ -10,13 +10,20 @@ export class AuthService {
     const params = new URLSearchParams();
     params.append('grant_type', 'password');
     params.append('client_id', 'nestjs-api');
-    params.append('client_secret', '09dy1hb45nWcw3sID4luD7ToMqZez9H4');
+    params.append('client_secret', '2xXhenziDdyOzE6dWnzxUtIzezY4c6Sw');
     params.append('username', username);
     params.append('password', password);
 
     try {
       const response = await axios.post(
         'http://localhost:8080/realms/nestjs-realm/protocol/openid-connect/token',
+        /*
+        http://localhost:8080/realms/nestjs-realm/protocol/openid-connect/auth
+        ?client_id=nestjs-api
+        &redirect_uri=http://localhost:4200/
+        &response_type=code
+        &scope=openid
+        */
         params.toString(),
         {
           headers: {
