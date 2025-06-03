@@ -7,6 +7,7 @@ postgres/
 themes/
 cloudinary/
 common/
+/postgres_metabase
 
 .env 
 
